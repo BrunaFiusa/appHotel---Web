@@ -17,6 +17,7 @@ export default function LoginForm() {
     btnAut.type = 'submit';
     btnAut.textContent = "Entrar";
     btnAut.className = 'input';
+    btnAut.className = 'btn btn-primary'
 
     formulario.appendChild(btnAut);
 
