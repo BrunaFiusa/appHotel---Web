@@ -8,10 +8,5 @@ export default function renderLoginPage() {
     const navbar = NavBar();
     nav.appendChild(navbar);
 
-    divRoot.appendChild(container); 
-
-    const formulario = LoginForm();
-    
-    container.appendChild(titulo);
-    container.appendChild(formulario); 
+    LoginForm();
 }
