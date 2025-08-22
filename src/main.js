@@ -12,6 +12,8 @@ const routes = {
 function getPath() {
     //obtém o hash (ex. "#login/"), remove o # e tira espaço
     const url = (location.hash || "").replace(/^#/, "").trim(); 
+    console.log(url);
+
     //retorna url se começar com "/", se não, retorna "//login" como padrão
     return url && url.startsWith("/") ? url : "/login"; 
 }
@@ -26,3 +28,5 @@ function renderRoutes() {
 window.addEventListener("hashchange", renderRoutes);
 //Renderização
 document.addEventListener('DOMContentLoaded', renderRoutes);
+
+console.log(routes);

@@ -9,7 +9,7 @@ export default function LoginForm() {
     divRoot.appendChild(container);
 
     const titulo = document.createElement('h1');
-    titulo.textContent = 'Faça o login';
+    titulo.textContent = 'Faça seu login';
     titulo.className = 'titulo';
     
     const formulario = document.createElement('form');

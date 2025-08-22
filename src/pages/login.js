@@ -8,5 +8,17 @@ export default function renderLoginPage() {
     const navbar = NavBar();
     nav.appendChild(navbar);
 
-    LoginForm();
+    const formulario = LoginForm();
+    const contentForm = formulario.querySelector('form');
+
+    const texto = document.createElement('p');
+    texto.textContent = 'Não possui uma conta? ';
+    texto.className = 'texto';
+
+    const link = document.createElement('a');
+    link.href = "#/register";
+    link.textContent = 'Cadastre-se!';
+
+    texto.appendChild(link)
+    contentForm.insertBefore(texto, contentForm.children[3]);
 }

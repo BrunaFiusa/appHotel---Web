@@ -16,3 +16,13 @@ input:focus {
     border: none;
 }
 
+.texto{
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 17px;
+    color: black;
+    text-align: center;
+    padding: 10px;
+}
+
