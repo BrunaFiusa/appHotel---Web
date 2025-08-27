@@ -16,7 +16,7 @@ export default function renderLoginPage() {
     texto.className = 'texto';
 
     const link = document.createElement('a');
-    link.href = "#/register";
+    link.href = "cadastro";
     link.textContent = 'Cadastre-se!';
 
     texto.appendChild(link)
