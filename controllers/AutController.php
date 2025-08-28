@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . "/../models/UserModel.php";
+require_once __DIR__ ."/../models/UserModel.php";
+require_once "PasswordController.php";
 
 class AutController {
     public static function login($conn, $data){
@@ -28,7 +29,6 @@ class AutController {
                 "message"=>"Credenciais inválidas!"
             ], 401);
         }
-
     }
 }
 ?>
