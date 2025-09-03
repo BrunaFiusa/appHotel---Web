@@ -3,7 +3,6 @@ require_once __DIR__ ."/../controllers/PasswordController.php";
 
 class UserModel{
     public static function validateUser($conn, $email, $password){
-        //$sql = "SELECT * FROM usuarios WHERE email = ?";
         $sql = "SELECT
                 usuarios.id,
                 usuarios.nome,
