@@ -35,7 +35,7 @@
             if($result){
                 return jsonResponse(['message'=> 'Quarto atualizado com sucesso']);
             }else{
-            return jsonResponse(['message'=> 'Deu merda'], 400);
+                return jsonResponse(['message'=> 'Deu merda'], 400);
             }
         }
 }
