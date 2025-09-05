@@ -1,5 +1,6 @@
 import LoginForm from "../components/LoginForm.js";
 import NavBar from "../components/Navbar.js";
+import Footer from "../components/Footer.js";
 
 export default function renderRegisterPage() { 
     const nav = document.getElementById('navbar');
@@ -38,5 +39,11 @@ export default function renderRegisterPage() {
 
     const btnRegister = formulario.querySelector('button');
     btnRegister.textContent = "Criar conta!";
+
+    const footer = document.getElementById('footer');
+    footer.innerHTML = '';
+
+    const footers = Footer();
+    footer.appendChild(footers);
 }
 
