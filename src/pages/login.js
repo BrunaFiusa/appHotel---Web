@@ -28,7 +28,7 @@ export default function renderLoginPage() {
             const result = await loginRequest(email, senha);
             console.log("login realizad com sucesso!");
             saveToken(result.token);
-            window.location.pathname = "MeuSite/home";
+            // window.location.pathname = "MeuSite/home";
         }
         catch {
             console.log("erro inesperado!");

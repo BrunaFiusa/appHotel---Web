@@ -41,3 +41,14 @@ input:focus {
     text-align: center;
     padding: 10px;
 }
+
+.heroContainer {
+    width: 100% !important;
+    max-height: 950px !important;
+    overflow: hidden;
+}
+
+.heroContainer .carousel-item img {
+    height: 950px;
+    object-fit: cover;
+}
