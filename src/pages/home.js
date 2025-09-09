@@ -1,6 +1,7 @@
 import Hero from "../components/Hero.js";
 import NavBar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
+import RoomCard from "../components/Card.js";
 
 export default function renderHomePage() { 
     const nav = document.getElementById('navbar');
@@ -14,6 +15,9 @@ export default function renderHomePage() {
 
     const hero = Hero();
     divRoot.appendChild(hero);
+
+    const roomcard = RoomCard();
+    divRoot.appendChild(roomcard);
 
     const footer = document.getElementById('footer');
     footer.innerHTML = '';

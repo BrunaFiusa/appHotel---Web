@@ -42,13 +42,38 @@ input:focus {
     padding: 10px;
 }
 
-.heroContainer {
-    width: 100% !important;
-    max-height: 950px !important;
-    overflow: hidden;
+.containerCard {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-top: 20px;
 }
 
-.heroContainer .carousel-item img {
-    height: 950px;
-    object-fit: cover;
+#root {
+    flex-direction: column;
 }
+
+.heroContainer-frame {
+    height: 60vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    /* overflow: hidden; */
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 550px) {
+    .heroContainer-frame{
+        height: 30vh;
+    }
+}
+
+
