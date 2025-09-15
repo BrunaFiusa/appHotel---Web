@@ -55,25 +55,32 @@ input:focus {
     flex-direction: column;
 }
 
-.heroContainer-frame {
-    height: 60vh;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    /* overflow: hidden; */
+/*Hero Section*/
+.hero-frame {
+    overflow: hidden;
 }
 
-.hero-img {
-    width: 100%;
-    height: 100%;
+.hero img, .hero {
+    /* Aplica propriedade cover para recortar parte da imagem (e não distorcê-la), definindo seu ponto
+    de foco a partir da propriedade object-position */
     object-fit: cover;
     object-position: center;
+    height: 60vh;
 }
 
 @media (max-width: 550px) {
     .heroContainer-frame{
-        height: 30vh;
+        height: 50vh;
     }
+}
+
+/*Date Selector Section*/
+.dateSelector .selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 
