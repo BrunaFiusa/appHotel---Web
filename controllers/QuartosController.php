@@ -12,8 +12,8 @@
         }
         
         public static function getAll($conn) {
-            $roomList = QuartosModel::getAll($conn);
-            return jsonResponse($roomList);
+            $list = QuartosModel::getAll($conn);
+            return jsonResponse($list);
         }
 
         public static function getById($conn, $id) {

@@ -3,15 +3,14 @@ require_once __DIR__ ."/../controllers/PasswordController.php";
 
 class ClientesModel{
  public static function create($conn, $data) {
-        $sql = "INSERT INTO clientes (nome, cpf, telefone, email, senha, cargo_id) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO clientes (nome, cpf, telefone, email, senha) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssi",
+        $stmt->bind_param("sssss",
             $data["nome"],
             $data["cpf"],
             $data["telefone"],
             $data["email"],
-            $data["senha"],
-            $data["cargo_id"]
+            $data["senha"]
         );
         return $stmt->execute();
     }
@@ -38,7 +37,7 @@ class ClientesModel{
     }
 
     public static function update($conn, $id, $data) {
-        $sql = "UPDATE clientes SET nome=?, cpf=?, telefone=?, email=?, senha=?, cargo_id=? WHERE id= ?";
+        $sql = "UPDATE clientes SET nome=?, cpf=?, telefone=?, email=?, senha=? WHERE id= ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sssssii",
             $data["nome"],
@@ -46,10 +45,39 @@ class ClientesModel{
             $data["telefone"],
             $data["email"],
             $data["senha"],
-            $data["cargo_id"],
             $id
         );
         return $stmt->execute();
+    }
+
+
+
+
+    public static function validateClient($conn, $email, $password){
+        $sql = "SELECT
+                clientes.id,
+                clientes.nome,
+                clientes.email,
+                clientes.senha,
+                cargos.nome AS cargo 
+                FROM clientes
+                INNER JOIN cargos
+                ON cargos.id = clientes.cargo_id
+                WHERE clientes.email = ?
+                ;";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($user = $result->fetch_assoc()){
+            if(PasswordController::validateHash($password, $user['senha'])){
+                unset($user['senha']);
+                return $user;
+            }
+        }
+        return false;
     }
 }
 ?>

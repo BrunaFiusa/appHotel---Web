@@ -12,8 +12,8 @@
         }
         
         public static function getAll($conn) {
-            $roomList = PedidosModel::getAll($conn);
-            return jsonResponse($roomList);
+            $list = PedidosModel::getAll($conn);
+            return jsonResponse($list);
         }
 
         public static function getById($conn, $id) {

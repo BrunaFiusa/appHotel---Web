@@ -1,8 +1,11 @@
 <?php
     require_once __DIR__ . "/../models/ClienteModel.php";
+    require_once __DIR__ . "/PasswordController.php";
 
     class ClientesController{
         public static function create($conn, $data){
+            $data['senha'] = PasswordController::generateHash($data['senha']);
+
             $result = ClientesModel::create($conn, $data);
             if($result){
                 return jsonResponse(['message'=> 'Cliente criado com sucesso']);
@@ -12,8 +15,8 @@
         }
         
         public static function getAll($conn) {
-            $roomList = ClientesModel::getAll($conn);
-            return jsonResponse($roomList);
+            $list = ClientesModel::getAll($conn);
+            return jsonResponse($list);
         }
 
         public static function getById($conn, $id) {

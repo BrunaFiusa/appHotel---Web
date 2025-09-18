@@ -12,8 +12,8 @@
         }
         
         public static function getAll($conn) {
-            $roomList = AdicionaisModel::getAll($conn);
-            return jsonResponse($roomList);
+            $list = AdicionaisModel::getAll($conn);
+            return jsonResponse($list);
         }
 
         public static function getById($conn, $id) {
