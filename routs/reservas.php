@@ -2,7 +2,7 @@
 require_once __DIR__ . "/../controllers/ReservasController.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
-    $id = $segments[2] ?? null;
+    $id = $data['id'] ?? null;
 
     if (isset($id)) {
         ReservasController::getByPedido($conn, $id);
