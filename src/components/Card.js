@@ -1,10 +1,10 @@
-export default function RoomCard(){
+export default function RoomCard(index){
     const roomcard = document.createElement('div');
     roomcard.innerHTML = 
     `
     <div class="card" style="width: 18rem;">
 
-        <div id="carouselExampleIndicators-RoomCard" class="carousel slide">
+        <div id="carouselExampleIndicators-${index}" class="carousel slide">
 
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators-RoomCard" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -26,12 +26,12 @@ export default function RoomCard(){
                 </div>
             </div>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-RoomCard" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-${index}" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon visually-hidden" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
 
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-RoomCard" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-${index}" data-bs-slide="next">
                 <span class="carousel-control-next-icon visually-hidden" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -39,7 +39,7 @@ export default function RoomCard(){
         </div>
 
         <div class="card-body">
-            <h5 class="card-title">Hotel</h5>
+            <h5 class="card-title">Hotel${index+1}</h5>
             <p class="card-text">Aproveite nosso hotel.</p>
             <a href="#" class="btn btn-primary">Reserve agora!</a>
         </div>

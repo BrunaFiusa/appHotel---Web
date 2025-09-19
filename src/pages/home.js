@@ -17,18 +17,18 @@ export default function renderHomePage() {
     const hero = Hero();
     divRoot.appendChild(hero);
 
+    const selector = DataSelector();
+    divRoot.appendChild(selector);
+
     const divCard = document.createElement('div');
     divCard.className ="divCard";
 
-    for (var i = 0; i<3; i++ ){
-        const roomcard = RoomCard();
+    for (var i = 0; i<5; i++ ){
+        const roomcard = RoomCard(i);
         divCard.appendChild(roomcard);
     }
 
     divRoot.appendChild(divCard);
-
-    const selector = DataSelector();
-    divRoot.appendChild(selector);
 
     const footer = document.getElementById('footer');
     footer.innerHTML = '';

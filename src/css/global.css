@@ -66,7 +66,7 @@ input:focus {
    definindo seu ponto de foco a partir da propriedade object-position*/
     object-fit: cover;
     object-position: center;
-    height: 66vh;
+    height: 50vh;
 }
 
 /*Responsividade media-query*/
@@ -77,9 +77,24 @@ input:focus {
 }
 
 /*Date Selector Section*/
-.dateSelector .selector {
+.divDateSelector {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 70px;
+}
+
+.inputDate {
+    width: 250px;
+    height: 70px;
+    margin-bottom: 0;
+}
+
+.buttonSearch {
+    width: 140px;
+    height: 70px;
+    font-size: 16px;
 }

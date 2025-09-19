@@ -1,31 +1,34 @@
-export default function DataSelector() {
-  const containerSelector = document.createElement('div');
-  containerSelector.className = 'dateSelector';
-  containerSelector.innerHTML = `
-    <div class = selector>
+export default function DateSelector() {
+    const divDateSelector = document.createElement('div');
+    divDateSelector.className = 'divDateSelector';
 
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Data Check-in</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>  
-        
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Data Check-out</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
+    const dateCheckIn = document.createElement('input');
+    dateCheckIn.type = 'date'
+    dateCheckIn.className = 'card p-4 shadow-lg inputDate';
+    divDateSelector.appendChild(dateCheckIn);
 
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Hóspedes</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
-    </div>
-`  
-return containerSelector;
+    const dateCheckOut = document.createElement('input');
+    dateCheckOut.type = 'date'
+    dateCheckOut.className = 'card p-4 shadow-lg inputDate';
+    divDateSelector.appendChild(dateCheckOut);
+
+    const guestsAmount = document.createElement('select');
+    guestsAmount.className = 'card p-4 shadow-lg inputDate';
+    guestsAmount.innerHTML = `
+    <option value="">Quantas Pessoas?</option>
+    <option value="1">1 pessoa</option>
+    <option value="2">2 pessoas</option>
+    <option value="3">3 pessoas</option>
+    <option value="4">4 pessoas</option>
+    <option value="5">5 ou mais pessoas</option>`;
+    divDateSelector.appendChild(guestsAmount);
+
+    const btnSearch = document.createElement('button');
+    btnSearch.type = 'submit';
+    btnSearch.textContent = "Search";
+    btnSearch.className = 'btn btn-primary buttonSearch';
+    divDateSelector.appendChild(btnSearch);
+
+    return divDateSelector;
 }
 

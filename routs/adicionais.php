@@ -18,12 +18,12 @@ elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
 
 elseif ($_SERVER['REQUEST_METHOD'] === "PUT" ) {
     $data = json_decode( file_get_contents('php://input'), true );
-    $id = $data['id'];
+    $id = $data['id'] ?? null;
     AdicionaisController::update($conn, $id, $data);
 }
 
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE") {
-    $id = $data['id'];
+    $id = $data['id'] ?? null;
 
     if (isset($id)) {
         AdicionaisController::delete($conn, $id);
