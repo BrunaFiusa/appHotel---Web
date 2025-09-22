@@ -1,6 +1,7 @@
 import Hero from "../components/Hero.js";
 import NavBar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
+import Grid from "../components/Grid.js";
 import RoomCard from "../components/Card.js";
 import DataSelector from "../components/DataSelector.js";
 
@@ -14,21 +15,25 @@ export default function renderHomePage() {
     const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';
 
-    const hero = Hero();
-    divRoot.appendChild(hero);
+    const grid = Grid();
+    grid.style.marginTop = '10%';
+    divRoot.appendChild(grid);
 
-    const selector = DataSelector();
-    divRoot.appendChild(selector);
+    // const hero = Hero();
+    // divRoot.appendChild(hero);
 
-    const divCard = document.createElement('div');
-    divCard.className ="divCard";
+    // const selector = DataSelector();
+    // divRoot.appendChild(selector);
 
-    for (var i = 0; i<5; i++ ){
-        const roomcard = RoomCard(i);
-        divCard.appendChild(roomcard);
-    }
+    // const divCard = document.createElement('div');
+    // divCard.className ="divCard";
 
-    divRoot.appendChild(divCard);
+    // for (var i = 0; i<5; i++ ){
+    //     const roomcard = RoomCard(i);
+    //     divCard.appendChild(roomcard);
+    // }
+
+    // divRoot.appendChild(divCard);
 
     const footer = document.getElementById('footer');
     footer.innerHTML = '';

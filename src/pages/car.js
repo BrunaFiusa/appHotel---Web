@@ -9,9 +9,7 @@ export default function rederCarPage() {
     nav.appendChild(navbar);
 
     const divRoot = document.getElementById('root');
-    divRoot.innerHTML = '';
-
-    
+    divRoot.innerHTML = ''; 
 
     const footer = document.getElementById('footer');
     footer.innerHTML = '';
