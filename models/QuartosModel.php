@@ -49,5 +49,26 @@ class QuartosModel{
         );
         return $stmt->execute();
     }
+
+    public static function buscarDisponivel($conn, $data) {
+        $sql = "SELECT 
+    q.*,
+    (q.qtd_cama_casal * 2 + q.qtd_cama_solteiro) AS qtd
+FROM quartos q
+WHERE q.disponivel = 1 
+AND (q.qtd_cama_casal * 2 + q.qtd_cama_solteiro) >= 4
+AND q.id NOT IN (
+    SELECT r.quarto_id 
+    FROM reservas r
+    WHERE r.fim > '2025-09-01 14:00:00'  
+    AND r.inicio < '2025-09-30 12:00:00' 
+);";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss",
+            $data["reservas.fim"],
+            $data["reservas.inicio"]
+        );
+        return $stmt->execute();
+    }
 }
 ?>

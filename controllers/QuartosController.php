@@ -51,5 +51,14 @@
                 return jsonResponse(['message'=> 'Deu merda'], 400);
             }
         }
+
+        public static function buscarDisponivel($conn, $data){
+            $result = QuartosModel::update($conn, $data);
+            if($result){
+                return jsonResponse(['message'=> 'Quartos disopnivel são:']);
+            }else{
+                return jsonResponse(['message'=> 'Deu merda'], 400);
+            }
+        }
 }
 ?>

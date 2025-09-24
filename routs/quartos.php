@@ -6,7 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
 
     if (isset($id)) {
         QuartosController::getById($conn, $id);
-    } else {
+    } elseif (isset($data)){
+        QuartosController::buscarDisponivel($conn, $data)
+    } 
+    else {
         QuartosController::getAll($conn);
     }
 }

@@ -15,7 +15,4 @@ export async function listAllRoomsRequest() {
         },
         credentials: "same-origin"
     })
-
-
 }
-
