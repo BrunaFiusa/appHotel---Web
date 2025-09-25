@@ -2,12 +2,18 @@
 require_once __DIR__ . "/../controllers/QuartosController.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
+    $data = json_decode(file_get_contents('php://input'), true);
+    // $id = $segments[2] ?? null;
     $id = $data['id'] ?? null;
+    $qtd = $data['qtd'] ?? null;
+    $fim = $data['fim'] ?? null;
+    $inicio = $data['inicio'] ?? null;
 
     if (isset($id)) {
         QuartosController::getById($conn, $id);
-    } elseif (isset($data)){
-        QuartosController::buscarDisponivel($conn, $data)
+    } 
+    elseif (isset($qtd, $fim, $inicio)){
+        QuartosController::buscarDisponivel($conn, $qtd, $fim, $inicio);
     } 
     else {
         QuartosController::getAll($conn);

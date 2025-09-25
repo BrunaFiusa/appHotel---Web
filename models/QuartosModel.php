@@ -50,25 +50,26 @@ class QuartosModel{
         return $stmt->execute();
     }
 
-    public static function buscarDisponivel($conn, $data) {
-        $sql = "SELECT 
-    q.*,
-    (q.qtd_cama_casal * 2 + q.qtd_cama_solteiro) AS qtd
-FROM quartos q
-WHERE q.disponivel = 1 
-AND (q.qtd_cama_casal * 2 + q.qtd_cama_solteiro) >= 4
-AND q.id NOT IN (
-    SELECT r.quarto_id 
-    FROM reservas r
-    WHERE r.fim > '2025-09-01 14:00:00'  
-    AND r.inicio < '2025-09-30 12:00:00' 
-);";
+    public static function buscarDisponivel($conn, $qtd, $fim, $inicio) {
+        $sql = "SELECT quartos.*,
+        (quartos.qtd_cama_casal * 2 + quartos.qtd_cama_solteiro) AS qtd
+        FROM quartos  WHERE quartos.disponivel = 1 
+        AND (quartos.qtd_cama_casal * 2 + quartos.qtd_cama_solteiro) >= ?
+        AND quartos.id NOT IN (
+            SELECT reservas.quarto_id 
+            FROM reservas 
+            WHERE reservas.fim > ? 
+            AND reservas.inicio < ? );";
+
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss",
-            $data["reservas.fim"],
-            $data["reservas.inicio"]
+        $stmt->bind_param("iss",
+            $qtd,
+            $fim,
+            $inicio
         );
-        return $stmt->execute();
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
 ?>
