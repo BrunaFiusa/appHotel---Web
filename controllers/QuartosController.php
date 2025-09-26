@@ -52,9 +52,13 @@
             }
         }
 
-        public static function buscarDisponivel($conn, $qtd, $fim, $inicio){
-            $list = QuartosModel::buscarDisponivel($conn, $qtd, $fim, $inicio);
-            return jsonResponse($list);
+        public static function buscarDisponivel($conn,$data) {
+            $resultado = QuartosModel::buscarDisponiveis($conn,$data);
+            if ($resultado !== false && !empty($resultado)) {
+                return jsonResponse(['mesage'=>"quartos Disponiveis", 'data'=> $resultado]);
+            } else {
+                return jsonResponse(['mesage'=>"erro ao buscar quartos disponiveis"],400);
+            }
         }
 }
 ?>

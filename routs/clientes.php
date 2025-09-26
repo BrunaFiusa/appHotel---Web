@@ -2,7 +2,7 @@
 require_once __DIR__ . "/../controllers/ClientesController.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
-    $id = $data['id'] ?? null;
+    $id = $segments[2] ?? null;
 
     if (isset($id)) {
         ClientesController::getById($conn, $id);

@@ -2,7 +2,7 @@
 require_once __DIR__ . "/../controllers/AdicionaisController.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
-    $id = $data['id'] ?? null;
+    $id = $segments[2] ?? null;
 
     if (isset($id)) {
         AdicionaisController::getById($conn, $id);
