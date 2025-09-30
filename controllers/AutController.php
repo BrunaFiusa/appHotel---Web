@@ -27,17 +27,6 @@ class AutController {
                 "message"=>"Credenciais inválidas!"
             ], 401);
         }
-
-        $user = ClientesModel::validateClient($conn, $data['email'], $data['senha']);
-        if ($user){
-            $token = createToken($user);
-            return jsonResponse([ "token" => $token ]);
-        }else{
-            return jsonResponse([
-                "status"=>"erro",
-                "message"=>"Credenciais inválidas!"
-            ], 401);
-        }
     }
 }
 ?>

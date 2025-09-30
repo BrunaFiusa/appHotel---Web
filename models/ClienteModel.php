@@ -50,9 +50,6 @@ class ClientesModel{
         return $stmt->execute();
     }
 
-
-
-
     public static function validateClient($conn, $email, $password){
         $sql = "SELECT
                 clientes.id,
