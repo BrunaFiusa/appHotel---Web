@@ -5,7 +5,14 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     $id = $segments[2] ?? null;
 
     if (isset($id)) {
-        QuartosController::getById($conn, $id);
+        if (is_numeric($id)) {
+            QuartosController::getById($conn, $id);
+        } else {
+            $inicio = isset($_GET['inicio']) ? $_GET['inicio'] : null;
+            $fim = isset($_GET['fim']) ? $_GET['fim'] : null;
+            $qtd = isset($_GET['qtd']) ? $_GET['qtd'] : null;
+            QuartosController::buscarDisponivel($conn, ["inicio" => $inicio, "fim" => $fim, "qtd" => $qtd]);
+        }
     } 
     else {
         QuartosController::getAll($conn);

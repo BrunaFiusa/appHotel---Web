@@ -10,6 +10,4 @@ export async function loginRequest(nome, cpf, telefone, email, senha) {
         body: JSON.stringify(dados),
         credentials: "same-origin"
     });
-
-    
 }

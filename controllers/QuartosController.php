@@ -52,7 +52,7 @@
             }
         }
 
-        public static function buscarDisponivel($conn,$data) {
+        public static function buscarDisponivel($conn, $data) {
             $resultado = QuartosModel::buscarDisponiveis($conn,$data);
             if ($resultado !== false && !empty($resultado)) {
                 return jsonResponse(['mesage'=>"quartos Disponiveis", 'data'=> $resultado]);
