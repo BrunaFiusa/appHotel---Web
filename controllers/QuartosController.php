@@ -1,20 +1,11 @@
 <?php
     require_once __DIR__ . "/../models/QuartosModel.php";
+    require_once "ValidatorController.php";
 
     class QuartosController{
         public static function create($conn, $data){
-            $camposObrigatorios = ['nome', 'numero', 'qtd_cama_casal', 'qtd_cama_solteiro', 'preco', 'disponivel'];
+            ValidatorController::validate_data($data, ['nome', 'numero', 'qtd_cama_casal', 'qtd_cama_solteiro', 'preco', 'disponivel']);
             $camposFaltando = [];
-
-            foreach ($camposObrigatorios as $campo) {
-                if (!isset($data[$campo]) || empty($data[$campo])) {
-                    $camposFaltando[] = $campo;
-                }
-            }
-
-            if (!empty($camposFaltando)) {
-                return jsonResponse(['message' => 'Erro, falta o campo: ' . implode(', ', $camposFaltando)]);
-            }
 
             $result = QuartosModel::create($conn, $data);
             if($result){

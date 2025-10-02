@@ -61,7 +61,6 @@ class QuartosModel{
             WHERE r.fim > ?  
             AND r.inicio < ?
         );";
-            
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iss",

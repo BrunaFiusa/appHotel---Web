@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/../controllers/AutController.php";
 
+
 if ( $_SERVER['REQUEST_METHOD'] == "POST" ){
     $opcao = $segments[2] ?? null;
     $data = json_decode( file_get_contents('php://input'), true );
@@ -13,7 +14,16 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" ){
         jsonResponse(['status'=>'erro', 'message'=>'rota não existe'], 405);
     }
     
-} else {
+} 
+
+//Teste
+elseif ( $_SERVER['REQUEST_METHOD'] == "PUT" ){
+    validateTokenAPI();
+    jsonResponse(['message'=> 'resposta que deu certo'], 200);
+}
+//Fim do teste
+
+else {
     jsonResponse([
         'status' => 'erro',
         'message' => 'Método não permitido'
