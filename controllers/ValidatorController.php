@@ -5,7 +5,7 @@ class ValidatorController{
         $pendets = [];
         foreach ($labels as $lbl){
             if (!isset($data[$lbl]) && empty($data[$lbl]) ){
-                $pendets[] = $lbl
+                $pendets[] = $lbl;
             }
         }
         if(!empty($pendets)) {
