@@ -26,29 +26,34 @@ export default function renderHomePage() {
     const selector = DataSelector();
     divRoot.appendChild(selector);
 
-    const btnSearchRoom = selector.querySelector('button');
+    const [dateChekin, dateCheckout] = selector.querySelectorAll('input[type="date"]');
+    const qtdHospedes = selector.querySelector('select');
+    const btnDateSelec = selector.querySelector('button');
 
-    btnSearchRoom.addEventListener("click", async (evento) =>{
+    const divCard = document.createElement('div');
+    divCard.className ="divCard";
+    divCard.id = "cards-result";
+    divCard.innerHTML = '';
+ 
+    btnDateSelec.addEventListener("click", async (evento) =>{
         evento.preventDefault();
-        const inicio = "2025-10-05";
-        const fim = "2025-12-30";
-        const qtd = 2;
+        const inicio = (dateChekin?.value || "").trim();
+        const fim = (dateCheckout?.value || "").trim();
+        const qtd = parseInt(qtdHospedes?.value || "0", 10);
         try{
             const quartos = await listAvaibleQuartosRequest({inicio, fim, qtd});
+            if ( ! quartos.length) {
+                return;
+            }
+            divCard.innerHTML = '';
+            quartos.forEach((itemCard, i) => {
+                divCard.appendChild(RoomCard(itemCard, i));
+            });
             //Após intervalo: prencher as infos dos quartos nos cards ou avisar ao cliente que nao há quarto disponivel
         }catch(erro){
             console.log(erro);
         }
     });
-
-    const divCard = document.createElement('div');
-    divCard.innerHTML = '';
-    divCard.className ="divCard";
-
-    for (var i = 0; i<3; i++ ){
-        const roomcard = RoomCard(i);
-        divCard.appendChild(roomcard);
-    }
 
     divRoot.appendChild(divCard);
 

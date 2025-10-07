@@ -50,7 +50,7 @@ input:focus {
 
 .divCard {
     display: flex;
-    flex-direction: row;
+    flex-direction: wrap;
     justify-content: center;
     align-items: center;
     gap: 35px;
