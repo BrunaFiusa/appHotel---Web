@@ -40,10 +40,11 @@ export default function NavBar() {
         </li>
 
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <div class="cartDiv">
+        <i class="bi bi-cart-check">
+        <a href="cart"> <img src="public/assets/img/cart-check.svg" width="25"
+        </i>
+        </div>
     </div>
   </div >
 </nav >`

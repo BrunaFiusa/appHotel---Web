@@ -5,6 +5,7 @@ import Grid from "../components/Grid.js";
 import RoomCard from "../components/Card.js";
 import DataSelector from "../components/DataSelector.js";
 import { listAvaibleQuartosRequest } from "../api/quartosAPI.js";
+import CardLounge from "../components/CardLounge.js";
 
 export default function renderHomePage() { 
     const nav = document.getElementById('navbar');
@@ -34,6 +35,9 @@ export default function renderHomePage() {
     divCard.className ="divCard";
     divCard.id = "cards-result";
     divCard.innerHTML = '';
+
+    const cardLounge = CardLounge();
+    divCard.appendChild(cardLounge);
  
     btnDateSelec.addEventListener("click", async (evento) =>{
         evento.preventDefault();

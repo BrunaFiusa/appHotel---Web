@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 import Grid from "../components/Grid.js";
  
-export default function renderCarPage() {
+export default function renderCartPage() {
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
  
