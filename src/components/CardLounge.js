@@ -16,7 +16,7 @@ export default function CardLounge(cardLoungeItem, index) {
                 <img src="public/assets/img/caret-up-fill.svg" width: "20" height: "20">
                 <h3 class="card-text" style="font-size: 1rem; font-weight: 700;">${title}</h3>
             </button>
-            <ul class=""dropdown-menu style="border-radius: 0.375rem 0.375rem 0 0 ;">
+            <ul class="dropdown-menu" style="border-radius: 0.375rem 0.375rem 0 0 ;">
                 <p class="card-text" style="text-align: center";>${text}.</p>
             </ul>
         </div>

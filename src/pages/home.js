@@ -27,17 +27,52 @@ export default function renderHomePage() {
     const selector = DataSelector();
     divRoot.appendChild(selector);
 
+    /*Criar uma constante que armazena o valor da data de hoje*/
+    const dateToday = new Date().toISOString().split("T")[0];
+
     const [dateChekin, dateCheckout] = selector.querySelectorAll('input[type="date"]');
+    dateChekin.min = dateToday;
+    dateCheckout.min = dateToday;
+
     const qtdHospedes = selector.querySelector('select');
     const btnDateSelec = selector.querySelector('button');
 
     const divCard = document.createElement('div');
     divCard.className ="divCard";
     divCard.id = "cards-result";
-    divCard.innerHTML = '';
 
-    const cardLounge = CardLounge();
-    divCard.appendChild(cardLounge);
+    const cardGroupInfra = document.createElement('div');
+    cardGroupInfra.className = "cards";
+
+    const tituloInfra = document.createElement('h2');
+    tituloInfra.textContent = "Conheça nosso Hotel";
+    tituloInfra.style.textAlign = "center";
+
+    const lougeItems = [
+        {
+            path: "restaurante.webp", title:"Restaurante", text: "Nosso restaurante é um espaço agradável e familiar!"
+        },
+    ];
+
+    for (let i = 0; i< lougeItems.length; i++){
+        const cardLounge = CardLounge(lougeItems[i], i);
+        cardGroupInfra.appendChild(cardLounge);
+    }
+
+    function getMinDateCheckout(dateCheckIn) {
+        const minDaily = new Date(dateCheckIn);
+        minDaily.setDate(minDaily.getDate() + 1);
+        return minDaily.toISOString().split('T')[0];
+    }
+
+    /*Evento para monitorar a alteração da data de check-in para mudar a data da check-out*/
+    dateChekin.addEventListener("change", async (e) => {
+        if (this.value){
+            const minDateCheckout = getMinDateCheckout(this.value);
+            dateCheckout.min = minDateCheckout;
+        }
+    });
+
  
     btnDateSelec.addEventListener("click", async (evento) =>{
         evento.preventDefault();
@@ -60,6 +95,8 @@ export default function renderHomePage() {
     });
 
     divRoot.appendChild(divCard);
+    divRoot.appendChild(tituloInfra);
+    divRoot.appendChild(cardGroupInfra);
 
     const footer = document.getElementById('footer');
     footer.innerHTML = '';
