@@ -34,6 +34,36 @@
             //PedidosModel::createOrder($conn, $data);
         }
 
+        public static function createOrder($conn, $data){
+            $data['usuario_id'] = isset($data['usuario_id']) ? $data['usuario_id'] : null;
+            ValidatorController::validate_data($data, ["cliente_id", "pagamento", "quartos"]);
+
+            foreach ($data['quartos'] as $quarto) {
+                ValidatorController::validate_data($quarto, ["id", "inicio", "fim"]);
+                $quarto['inicio'] = ValidatorController::fix_hours($quarto['inicio'], 14);
+                $quarto['fim'] = ValidatorController::fix_hours($quarto['fim'], 12);
+            }
+
+            if(count($data['quartos']) == 0){
+                jsonResponse(['message'=> 'Reservas não existentes'], 400);
+                exit;
+            }
+
+            try {
+                $result = PedidosModel::createOrder($conn, $data);
+                return jsonResponse(['message'=> $result]);
+            } catch (\Throwable $erro) {
+                return jsonResponse(['message'=>$erro->getMessage()], 500);
+            }
+        }
+
+
+
+
+
+
+
+
         public static function delete($conn, $id){
             $result = PedidosModel::delete($conn, $id);
             if($result){
