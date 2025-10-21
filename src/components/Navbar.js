@@ -39,6 +39,10 @@ export default function NavBar() {
         <a class="nav-link" href="login">Login</a>
         </li>
 
+        <li class="nav-item">
+        <a class="nav-link" href="room">Quarto</a>
+        </li>
+
       </ul>
       <div class="cartDiv">
         <i class="bi bi-cart-check">
