@@ -9,11 +9,8 @@ function calculoDiarias(checkIn, checkOut){
     const tzout = Date.UTC(yout, mout -1, dout);
 
     console.log("Milissegundos desde 2026-01-01 00:00:00: " + tzin);
-    return Math.floor((tzin - tzout) / (100 * 60*60*24));
+    return Math.floor((tzout - tzin) / (100 * 60*60*24));
 }
-
-
-
 
 export default function RoomCard(itemCard, index= 0){
     const {
