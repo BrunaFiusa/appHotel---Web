@@ -1,6 +1,7 @@
 import FormsRoom from "../components/FormsRoom.js";
 import NavBar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
+import { addRoom } from "../api/quartosAPI.js";
 
 export default function renderRoomPage() { 
     //NavBar
@@ -12,7 +13,17 @@ export default function renderRoomPage() {
     // Form
     const formulario = FormsRoom();
     const contentForm = formulario.querySelector('form');
-    contentForm.appendChild(contentForm);
+    formulario.appendChild(contentForm);
+
+    contentForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        try{ 
+            const response = await addRoom(this);
+            console.log("Resposta do servidor: " + response);
+        } catch {
+            console.log("Erro ao enviar requisição: " + error.message);
+        }
+    })
 
     //Footer
     const footer = document.getElementById('footer');

@@ -101,7 +101,7 @@ export default function renderHomePage() {
 
     const lougeItems = [
         {
-            path: "restaurante.webp", title:"Restaurante", text: "Nosso restaurante é um espaço agradável e familiar!"
+            path: "restaurante.webp", title:"Restaurante", text: "Nosso restaurante é um espaço agradável e familiar!",
         },
     ];
 

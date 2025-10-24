@@ -1,27 +1,21 @@
 export default function FormsRoom() {
     const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';
-    divRoot.style.display = 'flex';
-    divRoot.style.flexDirection = 'column';
-    divRoot.style.alignItems = 'center';
-    divRoot.style.justifyContent = 'center';
-    divRoot.style.height = '100vh';
+    divRoot.className = 'card p-4 shadow-lg';
+    divRoot.style.maxWidth = '400px';
+    divRoot.style.marginTop = '100px';
+    divRoot.style.marginLeft = '36%'; 
+    
+    const formulario = document.createElement('form');
+    formulario.className = 'd-flex flex-column';
+
+    // Titulo
+    const titulo = document.createElement('h1');
+    titulo.textContent = 'Cadastrar Quarto';
 
     const container = document.createElement('div');
-    container.className = 'card p-4 shadow-lg';
-    container.style.width = '100%';
-    container.style.maxWidth = '500px';
-    divRoot.appendChild(container);
-
-    const titulo = document.createElement('h2');
-    titulo.textContent = 'Cadastrar Quarto';
-    titulo.className = 'text-center mb-4';
     container.appendChild(titulo);
-
-    const formulario = document.createElement('form');
-    formulario.className = 'd-flex flex-column gap-3';
-    container.appendChild(formulario);
-
+    
     // Nome do quarto
     const nome = document.createElement('input');
     nome.type = 'text';
@@ -61,25 +55,23 @@ export default function FormsRoom() {
     const divImagem = document.createElement('div');
     divImagem.className = 'mb-3';
     formulario.appendChild(divImagem);
-
     const labelImagem = document.createElement('label');
     labelImagem.setAttribute('for', 'formFileMultiple');
     labelImagem.className = 'form-label';
     labelImagem.textContent = 'Imagens do quarto';
     divImagem.appendChild(labelImagem);
-
     const imagem = document.createElement('input');
     imagem.className = 'form-control';
     imagem.type = 'file';
     imagem.id = 'formFileMultiple';
-    imagem.multiple = true; // ✅ permite vários arquivos
+    imagem.multiple = true; 
+    imagem.accept = "img/*";
     divImagem.appendChild(imagem);
 
     // Disponibilidade
     const labelDisponivel = document.createElement('label');
     labelDisponivel.textContent = 'O quarto está disponível?';
     formulario.appendChild(labelDisponivel);
-
     const disponivel = document.createElement('input');
     disponivel.type = 'checkbox';
     disponivel.className = 'form-check-input';
@@ -91,6 +83,9 @@ export default function FormsRoom() {
     btn.textContent = 'Cadastrar Quarto';
     btn.className = 'btn btn-danger mt-3';
     formulario.appendChild(btn);
+    
+    container.appendChild(formulario);
+    divRoot.appendChild(container);
 
     return divRoot;
 }
