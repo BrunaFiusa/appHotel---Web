@@ -33,6 +33,11 @@ export default function renderHomePage() {
     dateCheckout.min = dateToday;
 
     const qtdHospedes = selector.querySelector('select');
+
+    dateCheckIn.id = 'id-dateCheckIn';
+    dateCheckout.id = 'id-dateCheckOut';
+    qtdHospedes.id = 'id-guestAmount';
+
     const btnDateSelec = selector.querySelector('button');
 
     function getMinDateCheckout(dateCheckIn) {

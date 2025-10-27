@@ -1,3 +1,5 @@
+import { addItemToCart } from "../store/carrinhoStore";
+
 function calculoDiarias(checkIn, checkOut){
     // const checkIn = "2026-01-01";
     // const checkOut = "2026-01-08";
@@ -14,6 +16,7 @@ function calculoDiarias(checkIn, checkOut){
 
 export default function RoomCard(itemCard, index= 0){
     const {
+        id,
         nome,
         numero,
         qtd_cama_casal,
@@ -78,5 +81,39 @@ export default function RoomCard(itemCard, index= 0){
 
     </div>
 `
-return roomcard;
+roomcard.querySelector(".btn-reservar").addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const idDateCheckin = document.getElementById("id-dateCheckIn");
+    const idDateCheckout = document.getElementById("id-dateCheckOut");
+    const idGuestAmout = document.getElementById("id-guestAmountt");
+
+    const inicio = (idDateCheckin?.value || "");
+    const fim = (idDateCheckout?.value || "");
+    const qtd = parseInt(idGuestAmout?.value || "0", 10);
+
+    if (!inicio || !fim || Number.isNaN(qtd) <= 0) {
+        console.log("Preencha todos os campos!");
+        return;
+    }
+
+    const daily = calculoDiarias(inicio, fim);
+    const subTotal = parseInt(preco) * daily;
+    console.log(subTotal);
+    
+    const novoItemReserva = {
+        id,
+        nome,
+        checkIn: inicio,
+        checkOut: fim,
+        qtd: qtd,
+        daily,
+        subTotal,
+
+    }
+    addItemToCart(novoItemReserva);
+    alert(`Reserva do quarto adicionais: ${nome} -Preço/diária: R$ ${preco} -Nº de diárias: ${daily} -Subtotal: R$ ${subTotal}`);
+    });
+
+    return roomcard;
 }

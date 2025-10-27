@@ -3,25 +3,32 @@ de pagina e nao tenha "re-logar" */
 
 export async function addRoom(contentForm) {
     const formData = new FormData(contentForm);
-    const typeAccept = ['image/jpg', 'image/png'];
+    const typeAccept = ['image/jpeg', 'image/png'];
     const inputFotos = contentForm.querySelector('#formFileMultiple');
     const imgs = inputFotos.files;
     for (let i = 0; i < imgs.length; i++) {
-        if (!typeAccept.includes(imgs[i].type)) {
-            throw new Error(`Arquivo "${imgs[i].name}" não é suportado. Selecione um arquivo`);
-        }
-    }
+        if(!typeAccept.includes(imgs[i].type)) {
+            throw new Error(`Arquivo "${imgs[i].name}" não é suportado.
+            Selecione um arquivo JPG ou PNG`);
+        }}
     const url = `api/quartos`;
     const response = await fetch(url, {
         method: "POST",
         body: formData
     });
-    if (!response.ok) {
-        throw new Error(`Errp ao enviar requisição: ${response.status}`);
+    // Interpreta a resposta como JSON
+    let result = null;
+    try {
+        result = await response.json();
     }
-    const result = await response.json();
-    return result;
-}
+    catch {
+        // Se não for JSON válido, result permanece null
+        result = null;
+    }
+    if(!response.ok) {
+        throw new Error(`Erro ao enviar requisição: ${response.status}`);
+    }
+    return result; }  
 
 // Listar os quartos disponiveis de acordo com o inicio fim e quantidade
 export async function listAvaibleQuartosRequest({ inicio, fim, qtd }){
