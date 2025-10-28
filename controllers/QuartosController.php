@@ -55,11 +55,23 @@
         }
 
         public static function buscarDisponivel($conn, $data) {
+            ValidatorController::validate_data($data, [
+                "inicio",
+                "fim",
+                "qtd"
+            ]);
+
+            $data["inicio"] = ValidatorController::fix_dateHour($data["inicio"], 14);
+            $data["fim"] = ValidatorController::fix_dateHour($data["fim"], 12);
+
             $resultado = QuartosModel::buscarDisponiveis($conn,$data);
-            if ($resultado !== false && !empty($resultado)) {
-                return jsonResponse(['mesage'=>"quartos Disponiveis", 'Quartos'=> $resultado]);
+            if ($resultado) {
+                foreach ($resultado as &$quarto) {
+                    $quarto['fotos'] = PhotoModel::getByRoomId($conn, $quarto['id']);
+                }
+                return jsonResponse(['Quartos'=> $resultado]);
             } else {
-                return jsonResponse(['mesage'=>"erro ao buscar quartos disponiveis"],400);
+                return jsonResponse(['mesage'=>"erro ao buscar quartos disponiveis", $resultado],400);
             }
         }
 }

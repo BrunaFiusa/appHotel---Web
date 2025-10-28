@@ -70,6 +70,12 @@ export default function renderHomePage() {
             }
         }
     });
+
+    // CRIAÇÃO DOS CARDS SOBRE O HOTEL //
+
+    const divCard = document.createElement('div');
+    divCard.className ="divCard";
+    divCard.id = "cards-result";
  
     btnDateSelec.addEventListener("click", async (evento) =>{
         evento.preventDefault();
@@ -78,7 +84,7 @@ export default function renderHomePage() {
         const qtd = parseInt(qtdHospedes?.value || "0", 10);
         try{
             const quartos = await listAvaibleQuartosRequest({inicio, fim, qtd});
-            if ( ! quartos.length) {
+            if ( !quartos.length) {
                 return;
             }
             divCard.innerHTML = '';
@@ -91,11 +97,7 @@ export default function renderHomePage() {
         }
     });
 
-    // CRIAÇÃO DOS CARDS SOBRE O HOTEL //
-
-    const divCard = document.createElement('div');
-    divCard.className ="divCard";
-    divCard.id = "cards-result";
+    
 
     const cardGroupInfra = document.createElement('div');
     cardGroupInfra.className = "cards";

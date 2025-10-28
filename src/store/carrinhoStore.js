@@ -2,47 +2,43 @@
 -> cria-se um pedido com esse quarto -> ususario pode adicionar mais reservas ao mesmo pedido -> finaliza pedido;
 (pedido armazendo como rascunho no localstorage: getItem() para obter dados, setItem() */
  
-const key = "GHR_cart"
+const key = "hotel_cart"
  
-export default function setCart(cart){
-    localStorage.setItem(key, JSON.stringify(cart));
+export function setCart(hotel_cart){
+    localStorage.setItem(key, JSON.stringify(Array.isArray(hotel_cart) ? hotel_cart: []));
 }
  
 export function getCart(){
-    try{
+    try {
         const raw = localStorage.getItem(key);
-        return raw ? JSON.parse(raw) : { status: "draft", items: []};
-    }catch{
-        return {status: "draft", items: []};
+        const hotel_cart = raw ? JSON.parse(raw) : [];
+        return Array.isArray(hotel_cart) ? hotel_cart : [];
+    } catch {
+        return [];
     }
 }
  
 export function addItemToCart(item) {
-    const cart = getCart();
-    cart.items.push(item);
-    setCart(cart);
-    return cart;
+    const hotel_cart = getCart();
+    hotel_cart.push(item);
+    setCart(hotel_cart);
+    return hotel_cart;
 }
 
 export function removeItemFromCart(i) {
-    const cart = getCart();
-    cart.items.splice(i, 1);
-    setCart(cart);
-    return cart;
+    const hotel_cart = getCart();
+    hotel_cart.splice(i, 1);
+    setCart(hotel_cart);
+    return hotel_cart;
 }
 
 export function clearCart(i) {
-    setCart({
-            status: "draft",
-            item: []
-        });
+    setCart( [] );
 }
 
 export function getTotalItems() {
-    const { items } = getCart();
-    const total = items.reduce((acc, it) =>
-        acc + Number(it.subtotal || 0), 0
-    );
+    const items = getCart();
+    const total = items.reduce((acc, it) => acc + Number(it.subtotal || 0), 0 );
     return {
         total,
         qtd_items: items.length

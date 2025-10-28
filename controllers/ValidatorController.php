@@ -10,14 +10,14 @@ class ValidatorController{
         }
         if(!empty($pendets)) {
             $pendets = implode(", ", $pendets);
-            jsonResponse(['message' => "Erro, Falta o campo".$pendets], 400);
+            jsonResponse(['message' => "Erro, Falta o campo: ".$pendets], 400);
             exit;
         }
     }
 
     public static function fix_dateHour($data, $hour) {
-        $dateHour = new DateTime($date);
-        $dateHour->setTime(hour, 0, 0);
+        $dateHour = new DateTime($data);
+        $dateHour->setTime($hour, 0, 0);
         return $dateHour->format('Y-m-d H:i:s');
     }
 }

@@ -1,4 +1,4 @@
-import { addItemToCart } from "../store/carrinhoStore";
+import { getCart, addItemToCart, clearCart, getTotalItems } from "../store/carrinhoStore.js";
 
 function calculoDiarias(checkIn, checkOut){
     // const checkIn = "2026-01-01";
@@ -76,7 +76,7 @@ export default function RoomCard(itemCard, index= 0){
                 ${preco != null ? `<li>Preco diária: R$ ${Number(preco).toFixed(2)}</li>` : ""}
             </ul>
 
-            <a href="#" class="btn btn-primary">Reserve agora!</a>
+            <a href="#" class="btn btn-primary btn-reservar">Reserve agora!</a>
         </div>
 
     </div>
@@ -91,11 +91,6 @@ roomcard.querySelector(".btn-reservar").addEventListener("click", async (e) => {
     const inicio = (idDateCheckin?.value || "");
     const fim = (idDateCheckout?.value || "");
     const qtd = parseInt(idGuestAmout?.value || "0", 10);
-
-    if (!inicio || !fim || Number.isNaN(qtd) <= 0) {
-        console.log("Preencha todos os campos!");
-        return;
-    }
 
     const daily = calculoDiarias(inicio, fim);
     const subTotal = parseInt(preco) * daily;
@@ -117,3 +112,55 @@ roomcard.querySelector(".btn-reservar").addEventListener("click", async (e) => {
 
     return roomcard;
 }
+
+// export default function renderPageListRoom() { 
+    
+//     const root = document.getElementById("root"); 
+//     root.innerHTML = ""; 
+//     const room = getCart();
+//     const container = document.createElement("div"); 
+//     container.className = "container my-4"; 
+    
+//     const header = document.createElement("div"); 
+//     header.className = "d-flex align-items-center justify-content-between mb-3"; 
+//     header.innerHTML =` 
+//     <h3 class="mb-0">Lista de Alunos</h3> 
+//     <div> 
+//         <button id="btnClear" class="btn btn-outline-danger btn-sm">Limpar Storage</button> 
+//     </div> 
+//     `;
+
+// //Tabela do bootstrap (exemplo) 
+
+// const tableWrap = document.createElement("div"); 
+// if (room.length === 0) { 
+//     tableWrap.innerHTML = `
+//     <div class="alert alert-info">Nenhum aluno cadastrado.</div>`; 
+// } else { 
+//     tableWrap.innerHTML = ` 
+//     <div class="table-responsive"> 
+//         <table class="table table-striped table-hover align-middle"> 
+//         <thead class="table-dark"> <tr> <th>Nome</th> 
+//             <th>Nº Matrícula</th> <th>Curso</th> </tr> 
+//         </thead> 
+//         <tbody> ${room.map(student => ` 
+//             <tr> 
+//                 <td>${student.nome}</td> 
+//                 <td>${student.matricula}</td> 
+//                 <td>${student.curso}</td> 
+//             </tr>`).join("")} 
+//         </tbody> 
+//         </table> 
+//     </div> `; } 
+//     container.appendChild(header); 
+//     container.appendChild(tableWrap); 
+//     root.appendChild(container); 
+    
+//     const btnClear = document.getElementById("btnClear"); 
+//     if (btnClear) {
+//         btnClear.addEventListener("click", () => { 
+//             clearCart (); 
+//             getTotalItems(); 
+//         }); 
+//     } 
+// }
