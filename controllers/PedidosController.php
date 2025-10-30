@@ -57,13 +57,6 @@
             }
         }
 
-
-
-
-
-
-
-
         public static function delete($conn, $id){
             $result = PedidosModel::delete($conn, $id);
             if($result){

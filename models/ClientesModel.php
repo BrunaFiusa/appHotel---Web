@@ -59,7 +59,7 @@ class ClientesModel{
                 cargos.nome AS cargo 
                 FROM clientes
                 INNER JOIN cargos
-                ON cargos.id = clientes.cargo_id
+                ON cargos.id = clientes.fk_cargo
                 WHERE clientes.email = ?
                 ;";
 

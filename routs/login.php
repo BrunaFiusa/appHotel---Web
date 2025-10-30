@@ -8,21 +8,13 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" ){
 
     if ( $opcao == "clientes" ) {
         AutController::loginCliente($conn, $data);
-    } else if ( $opcao == "funcionarios" ) {
+    } else if ( $opcao == "usuarios" ) {
         AutController::login($conn, $data);
     } else {
         jsonResponse(['status'=>'erro', 'message'=>'rota não existe'], 405);
     }
     
 } 
-
-//Teste
-elseif ( $_SERVER['REQUEST_METHOD'] == "PUT" ){
-    validateTokenAPI();
-    jsonResponse(['message'=> 'resposta que deu certo'], 200);
-}
-//Fim do teste
-
 else {
     jsonResponse([
         'status' => 'erro',
