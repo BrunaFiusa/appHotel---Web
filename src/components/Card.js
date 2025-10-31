@@ -1,4 +1,4 @@
-import { getCart, addItemToCart, clearCart, getTotalItems } from "../store/carrinhoStore.js";
+import { addItemToHotel_Cart } from "../store/carrinhoStore.js";
 
 function calculoDiarias(checkIn, checkOut){
     // const checkIn = "2026-01-01";
@@ -106,61 +106,9 @@ roomcard.querySelector(".btn-reservar").addEventListener("click", async (e) => {
         subTotal,
 
     }
-    addItemToCart(novoItemReserva);
+    addItemToHotel_Cart(novoItemReserva);
     alert(`Reserva do quarto adicionais: ${nome} -Preço/diária: R$ ${preco} -Nº de diárias: ${daily} -Subtotal: R$ ${subTotal}`);
     });
 
     return roomcard;
 }
-
-// export default function renderPageListRoom() { 
-    
-//     const root = document.getElementById("root"); 
-//     root.innerHTML = ""; 
-//     const room = getCart();
-//     const container = document.createElement("div"); 
-//     container.className = "container my-4"; 
-    
-//     const header = document.createElement("div"); 
-//     header.className = "d-flex align-items-center justify-content-between mb-3"; 
-//     header.innerHTML =` 
-//     <h3 class="mb-0">Lista de Alunos</h3> 
-//     <div> 
-//         <button id="btnClear" class="btn btn-outline-danger btn-sm">Limpar Storage</button> 
-//     </div> 
-//     `;
-
-// //Tabela do bootstrap (exemplo) 
-
-// const tableWrap = document.createElement("div"); 
-// if (room.length === 0) { 
-//     tableWrap.innerHTML = `
-//     <div class="alert alert-info">Nenhum aluno cadastrado.</div>`; 
-// } else { 
-//     tableWrap.innerHTML = ` 
-//     <div class="table-responsive"> 
-//         <table class="table table-striped table-hover align-middle"> 
-//         <thead class="table-dark"> <tr> <th>Nome</th> 
-//             <th>Nº Matrícula</th> <th>Curso</th> </tr> 
-//         </thead> 
-//         <tbody> ${room.map(student => ` 
-//             <tr> 
-//                 <td>${student.nome}</td> 
-//                 <td>${student.matricula}</td> 
-//                 <td>${student.curso}</td> 
-//             </tr>`).join("")} 
-//         </tbody> 
-//         </table> 
-//     </div> `; } 
-//     container.appendChild(header); 
-//     container.appendChild(tableWrap); 
-//     root.appendChild(container); 
-    
-//     const btnClear = document.getElementById("btnClear"); 
-//     if (btnClear) {
-//         btnClear.addEventListener("click", () => { 
-//             clearCart (); 
-//             getTotalItems(); 
-//         }); 
-//     } 
-// }

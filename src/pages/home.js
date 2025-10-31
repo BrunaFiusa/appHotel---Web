@@ -1,7 +1,6 @@
 import Hero from "../components/Hero.js";
 import NavBar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
-import Grid from "../components/Grid.js";
 import RoomCard from "../components/Card.js";
 import DataSelector from "../components/DataSelector.js";
 import { listAvaibleQuartosRequest } from "../api/quartosAPI.js";
